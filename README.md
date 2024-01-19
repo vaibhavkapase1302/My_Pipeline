@@ -31,13 +31,21 @@ Code Checkout
 Push to DockerHub
 
 ```groovy
-stage('Docker Push') {
-    	agent any
-      steps {
-      	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push shanem/spring-petclinic:latest'
+// Stage 3: Push to Docker Hub
+        stage("Push to Docker Hub") {
+            steps {
+                // Define the credentials for Docker Hub
+                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: "dockerHubPass", usernameVariable: 'dockerHubUser')]) {
+                    // Tag the Docker image with the Docker Hub repository information
+                    bat "docker tag new-flask-app-v2 ${env.dockerHubUser}/new-flask-app-v2:version-v2"
+                    
+                    // Log in to Docker Hub using the provided credentials
+                    bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                    
+                    // Push the Docker image to Docker Hub
+                    bat "docker push ${env.dockerHubUser}/new-flask-app-v2:version-v2"
+                }
+            }
         }
-      }
-    }
 ```
+
