@@ -13,7 +13,8 @@ Code Checkout
                 }
             }
         }
-    }```
+    }
+```
 
 ```groovy // Stage 1: Clone the Code
         stage("Clone the Code") {
