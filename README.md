@@ -25,7 +25,8 @@ Code Checkout
                     bat "git clone https://github.com/vaibhavkapase1302/jenkins-pipeline.git -b main"
                 }
             }
-        }```
+        }
+```
 
 Push to DockerHub
 
