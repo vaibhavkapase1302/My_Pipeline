@@ -38,4 +38,5 @@ stage('Docker Push') {
           sh 'docker push shanem/spring-petclinic:latest'
         }
       }
-    }```
+    }
+```
